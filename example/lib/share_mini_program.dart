@@ -75,7 +75,8 @@ class _ShareMiniProgramPageState extends State<ShareMiniProgramPage> {
               decoration: InputDecoration(labelText: "description"),
             ),
             new TextField(
-              controller: TextEditingController(text: "images/logo.png"),
+              controller:
+              TextEditingController(text: "assets://images/logo.png"),
               onChanged: (str) {
                 _thumbnail = str;
               },
@@ -94,7 +95,8 @@ class _ShareMiniProgramPageState extends State<ShareMiniProgramPage> {
         title: _title,
         path: _path,
         description: _description,
-        thumbnail: WeChatImage.network(_thumbnail));
+        thumbnail: WeChatImage.network(_thumbnail)
+    );
     shareToWeChat(model);
   }
 }

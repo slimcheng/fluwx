@@ -77,16 +77,7 @@ class ShareSelectorPage extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
-                onPressed: () async {
-                  String? extMsg = await getExtMsg();
-                  print("extMsg:$extMsg\n");
-                },
-                child: const Text("Get ExtMessage")),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("shareText");
                 },
@@ -94,7 +85,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("shareImage");
                 },
@@ -102,7 +93,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("shareWebPage");
                 },
@@ -110,7 +101,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("shareMusic");
                 },
@@ -118,7 +109,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("shareVideo");
                 },
@@ -126,7 +117,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("shareMiniProgram");
                 },
@@ -134,7 +125,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("sendAuth");
                 },
@@ -142,7 +133,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("pay");
                 },
@@ -150,7 +141,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("launchMiniProgram");
                 },
@@ -158,7 +149,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("subscribeMessage");
                 },
@@ -166,7 +157,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("AuthByQRCode");
                 },
@@ -174,7 +165,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed("AutoDeduct");
                 },
@@ -182,7 +173,7 @@ class ShareSelectorPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new OutlinedButton(
+            child: new OutlineButton(
                 onPressed: () {
                   openWeChatApp();
                 },

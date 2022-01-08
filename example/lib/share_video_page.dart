@@ -11,7 +11,7 @@ class _ShareMusicPageState extends State<ShareVideoPage> {
   String _videoLowBandUrl = "http://www.qq.com";
   String _title = "Beyond";
   String _description = "A Popular Rock Band From China";
-  String _thumnail = "images/logo.png";
+  String _thumnail = "assets://images/logo.png";
   WeChatScene scene = WeChatScene.SESSION;
 
   @override
@@ -69,7 +69,8 @@ class _ShareMusicPageState extends State<ShareVideoPage> {
               decoration: InputDecoration(labelText: "description"),
             ),
             new TextField(
-              controller: TextEditingController(text: "images/logo.png"),
+              controller:
+                  TextEditingController(text: "assets://images/logo.png"),
               onChanged: (str) {
                 _thumnail = str;
               },
@@ -83,9 +84,7 @@ class _ShareMusicPageState extends State<ShareVideoPage> {
                     new Radio<WeChatScene>(
                         value: WeChatScene.SESSION,
                         groupValue: scene,
-                        onChanged: (v) {
-                          if (v != null) handleRadioValueChanged(v);
-                        }),
+                        onChanged: handleRadioValueChanged),
                     const Text("会话")
                   ],
                 ),
@@ -94,9 +93,7 @@ class _ShareMusicPageState extends State<ShareVideoPage> {
                     new Radio<WeChatScene>(
                         value: WeChatScene.TIMELINE,
                         groupValue: scene,
-                        onChanged: (v) {
-                          if (v != null) handleRadioValueChanged(v);
-                        }),
+                        onChanged: handleRadioValueChanged),
                     const Text("朋友圈")
                   ],
                 ),
@@ -105,9 +102,7 @@ class _ShareMusicPageState extends State<ShareVideoPage> {
                     new Radio<WeChatScene>(
                         value: WeChatScene.FAVORITE,
                         groupValue: scene,
-                        onChanged: (v) {
-                          if (v != null) handleRadioValueChanged(v);
-                        }),
+                        onChanged: handleRadioValueChanged),
                     const Text("收藏")
                   ],
                 )

@@ -11,7 +11,7 @@ class ShareWebPagePage extends StatefulWidget {
 class ShareWebPagePageState extends State<ShareWebPagePage> {
   String _url = "share text from fluwx";
   String _title = "Fluwx";
-  String _thumnail = "images/logo.png";
+  String _thumnail = "assets://images/logo.png";
   WeChatScene scene = WeChatScene.SESSION;
 
   @override
@@ -53,7 +53,8 @@ class ShareWebPagePageState extends State<ShareWebPagePage> {
               decoration: InputDecoration(labelText: "thumbnail"),
             ),
             new TextField(
-              controller: TextEditingController(text: "images/logo.png"),
+              controller:
+                  TextEditingController(text: "assets://images/logo.png"),
               onChanged: (str) {
                 _thumnail = str;
               },
@@ -67,9 +68,7 @@ class ShareWebPagePageState extends State<ShareWebPagePage> {
                     new Radio<WeChatScene>(
                         value: WeChatScene.SESSION,
                         groupValue: scene,
-                        onChanged: (v) {
-                          if (v != null) handleRadioValueChanged(v);
-                        }),
+                        onChanged: handleRadioValueChanged),
                     const Text("会话")
                   ],
                 ),
@@ -78,9 +77,7 @@ class ShareWebPagePageState extends State<ShareWebPagePage> {
                     new Radio<WeChatScene>(
                         value: WeChatScene.TIMELINE,
                         groupValue: scene,
-                        onChanged: (v) {
-                          if (v != null) handleRadioValueChanged(v);
-                        }),
+                        onChanged: handleRadioValueChanged),
                     const Text("朋友圈")
                   ],
                 ),
@@ -89,9 +86,7 @@ class ShareWebPagePageState extends State<ShareWebPagePage> {
                     new Radio<WeChatScene>(
                         value: WeChatScene.FAVORITE,
                         groupValue: scene,
-                        onChanged: (v) {
-                          if (v != null) handleRadioValueChanged(v);
-                        }),
+                        onChanged: handleRadioValueChanged),
                     const Text("收藏")
                   ],
                 )

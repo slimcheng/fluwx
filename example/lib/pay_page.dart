@@ -51,8 +51,7 @@ class _PayPageState extends State<PayPage> {
               Map<String, dynamic> result = json.decode(data);
               print(result['appid']);
               print(result["timestamp"]);
-              fluwx
-                  .payWithWeChat(
+              fluwx.payWithWeChat(
                 appId: result['appid'].toString(),
                 partnerId: result['partnerid'].toString(),
                 prepayId: result['prepayid'].toString(),
