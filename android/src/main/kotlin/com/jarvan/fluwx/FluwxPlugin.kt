@@ -24,7 +24,7 @@ public class FluwxPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             val channel = MethodChannel(registrar.messenger(), "com.jarvanmo/fluwx")
             val authHandler = FluwxAuthHandler(channel)
             FluwxResponseHandler.setMethodChannel(channel)
-            WXAPiHandler.setContext(registrar.activity().applicationContext)
+            WXAPiHandler.setContext(registrar.activeContext())
             channel.setMethodCallHandler(FluwxPlugin().apply {
                 this.authHandler = authHandler
                 this.shareHandler = FluwxShareHandlerCompat(registrar).apply {
@@ -53,7 +53,6 @@ public class FluwxPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             call.method == "authByQRCode" -> authHandler?.authByQRCode(call, result)
             call.method == "stopAuthByQRCode" -> authHandler?.stopAuthByQRCode(result)
             call.method == "payWithFluwx" -> pay(call, result)
-            call.method == "payWithHongKongWallet" -> payWithHongKongWallet(call, result)
             call.method == "launchMiniProgram" -> launchMiniProgram(call, result)
             call.method == "subscribeMsg" -> subScribeMsg(call, result)
             call.method == "autoDeduct" -> signAutoDeduct(call, result)
@@ -107,16 +106,6 @@ public class FluwxPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             val done = WXAPiHandler.wxApi?.sendReq(request)
             result.success(done)
         }
-    }
-
-    private fun payWithHongKongWallet(call: MethodCall, result: MethodChannel.Result) {
-        val prepayId = call.argument<String>("prepayId") ?: ""
-        val request = WXOpenBusinessWebview.Req()
-        request.businessType = 1
-        request.queryInfo = hashMapOf(
-                "token" to prepayId
-        )
-        result.success(WXAPiHandler.wxApi?.sendReq(request))
     }
 
     private fun signAutoDeduct(call: MethodCall, result: Result) {

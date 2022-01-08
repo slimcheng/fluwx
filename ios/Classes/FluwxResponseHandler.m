@@ -4,7 +4,7 @@
 
 #import <Flutter/Flutter.h>
 #import "FluwxStringUtil.h"
-#import <WechatOpenSDK/WXApiObject.h>
+#import "WXApiObject.h"
 #import "FluwxResponseHandler.h"
 
 @implementation FluwxResponseHandler
@@ -105,7 +105,7 @@ FlutterMethodChannel *fluwxMethodChannel = nil;
         WXSubscribeMsgResp *subscribeMsgResp = (WXSubscribeMsgResp *) resp;
         NSMutableDictionary *result = [NSMutableDictionary dictionary];
         if(subscribeMsgResp.openId != nil){
-           result[@"openid"] = subscribeMsgResp.openId;
+           result[@"openid"] = subscribeMsgResp.extMsg;
         }
         if(subscribeMsgResp.openId != nil){
            result[@"templateId"] = subscribeMsgResp.templateId;
@@ -188,7 +188,7 @@ FlutterMethodChannel *fluwxMethodChannel = nil;
                 @"businessType": @(businessResp.businessType),
         };
 
-        [fluwxMethodChannel invokeMethod:@"onWXOpenBusinessWebviewResponse" arguments:result];
+        [fluwxMethodChannel invokeMethod:@"onAutoDeductResponse" arguments:result];
     }
 }
 

@@ -6,7 +6,7 @@
 #import <Flutter/Flutter.h>
 #import "FluwxPlugin.h"
 #import "WXApiRequestHandler.h"
-#import <WechatOpenSDK/WechatAuthSDK.h>
+#import "WechatAuthSDK.h"
 
 @class FluwxStringUtil;
 
@@ -18,6 +18,4 @@
 - (void)authByQRCode:(FlutterMethodCall *)call result:(FlutterResult)result;
 
 - (void)stopAuthByQRCode:(FlutterMethodCall *)call result:(FlutterResult)result;
-
-- (void)handleAuthByPhoneLogin:(FlutterMethodCall*)call result:(FlutterResult)result;
 @end
