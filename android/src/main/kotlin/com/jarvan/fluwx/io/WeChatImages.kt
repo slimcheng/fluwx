@@ -13,14 +13,14 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 
+
 /***
- * Created by mo on 2020/5/13
+ * Created by mo on 2020/3/7
  * 冷风如刀，以大地为砧板，视众生为鱼肉。
  * 万里飞雪，将穹苍作烘炉，熔万物为白银。
  **/
 
-
-class WeChatFileFile(override val source: Any, override val suffix: String) : WeChatFile {
+class WeChatFileImage(override val source: Any, override val suffix: String) : WeChatImage {
     private var internalSource: File
 
     init {
@@ -46,7 +46,7 @@ class WeChatFileFile(override val source: Any, override val suffix: String) : We
     }
 }
 
-private class WeChatAssetFile(override val source: Any, override val suffix: String) : WeChatFile {
+private class WeChatAssetImage(override val source: Any, override val suffix: String) : WeChatImage {
     private var internalSource: AssetFileDescriptor
 
     init {
@@ -72,7 +72,7 @@ private class WeChatAssetFile(override val source: Any, override val suffix: Str
     }
 }
 
-private class WeChatNetworkFile(override val source: Any, override val suffix: String) : WeChatFile {
+private class WeChatNetworkImage(override val source: Any, override val suffix: String) : WeChatImage {
     private var internalSource: String
 
     init {
@@ -100,7 +100,7 @@ private class WeChatNetworkFile(override val source: Any, override val suffix: S
     }
 }
 
-private class WeChatMemoryFile(override val source: Any, override val suffix: String) : WeChatFile {
+private class WeChatMemoryImage(override val source: Any, override val suffix: String) : WeChatImage {
     private var internalSource: ByteArray
 
     init {
@@ -113,7 +113,7 @@ private class WeChatMemoryFile(override val source: Any, override val suffix: St
     override suspend fun readByteArray(): ByteArray = internalSource
 }
 
-interface WeChatFile {
+interface WeChatImage {
     val source: Any
     val suffix: String
 
@@ -124,16 +124,16 @@ interface WeChatFile {
 //    ASSET,
 //    FILE,
 //    BINARY,
-        fun createWeChatFile(params: Map<String, Any>, assetFileDescriptor: (String) -> AssetFileDescriptor): WeChatFile {
+        fun createWeChatImage(params: Map<String, Any>, assetFileDescriptor: (String) -> AssetFileDescriptor): WeChatImage {
 //          Map toMap() => {"source": source, "schema": schema.index, "suffix": suffix};
             val suffix = (params["suffix"] as String?) ?: ".jpeg"
             return when ((params["schema"] as? Int) ?: 0) {
-                0 -> WeChatNetworkFile(source = (params["source"] as? String).orEmpty(), suffix = suffix)
-                1 -> WeChatAssetFile(source = assetFileDescriptor(((params["source"] as? String).orEmpty())), suffix = suffix)
-                2 -> WeChatFileFile(source = File((params["source"] as? String).orEmpty()), suffix = suffix)
-                3 -> WeChatMemoryFile(source = (params["source"] as? ByteArray)
+                0 -> WeChatNetworkImage(source = (params["source"] as? String).orEmpty(), suffix = suffix)
+                1 -> WeChatAssetImage(source = assetFileDescriptor(((params["source"] as? String).orEmpty())), suffix = suffix)
+                2 -> WeChatFileImage(source = File((params["source"] as? String).orEmpty()), suffix = suffix)
+                3 -> WeChatMemoryImage(source = (params["source"] as? ByteArray)
                         ?: byteArrayOf(), suffix = suffix)
-                else -> WeChatNetworkFile(source = (params["source"] as? String).orEmpty(), suffix = suffix)
+                else -> WeChatNetworkImage(source = (params["source"] as? String).orEmpty(), suffix = suffix)
             }
         }
     }
